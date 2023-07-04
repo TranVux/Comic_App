@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_bottom_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.assignment.fragments.ExploreFragment"
+        android:label="ExploreFragment" >
+        <action
+            android:id="@+id/action_exploreFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_exploreFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_exploreFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.assignment.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_homeFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.assignment.fragments.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_userFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_userFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.assignment.fragments.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment"
+            app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+</navigation>

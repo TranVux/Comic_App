@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="bg_app">#17181C</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text_primary">#ffffff</color>
+    <color name="text_primary_80">#CCFFFFFF</color>
+    <color name="text_secondary">#cccccc</color>
+    <color name="text_secondary_80">#CCCCCCCC</color>
+    <color name="primary">#00AAD3</color>
+    <color name="card_bg">#1E2027</color>
+    <color name="error">#FF6666</color>
+    <color name="bg_combo_box">#2C2A2A</color>
+
+    <color name="category_yellow">#FFD966</color>
+    <color name="category_yellow_dark">#F6BA6F</color>
+    <color name="category_green">#00DFA2</color>
+    <color name="category_green_dark">#94D3AC</color>
+    <color name="category_green_light">#9DF1DF</color>
+    <color name="category_red_light">#FF7A5C</color>
+    <color name="category_blue_sky">#8DCBE6</color>
+    <color name="category_blue_dark">#29435C</color>
+    <color name="category_pink_dark">#BB8FA9</color>
+    <color name="category_pink_light">#ECA0B6</color>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_default"
+    tools:context=".views.LoginActivity">
+
+    <ImageView
+        android:id="@+id/buttonGoHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_home_active" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/input_height"
+        android:text="@string/login"
+        android:theme="@style/Heading25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="@string/sub_heading_login"
+        android:theme="@style/SubHeading11" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_edit_text"
+        style="@style/OutlineEditTextLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/input_height"
+        app:placeholderText="@string/email_placeholder"
+        android:hint="@string/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusForward="@id/password_edit_text"
+            android:imeOptions="actionNext"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password_edit_text"
+        style="@style/OutlineEditTextLayoutPasswordStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="@dimen/block_margin"
+        app:placeholderText="@string/password_placeholder"
+        android:hint="@string/password">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textPassword"
+            android:nextFocusForward="@id/button_login"
+            android:imeOptions="actionDone"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/ButtonAppStyle"
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:text="Đăng nhập"
+        android:layout_marginTop="@dimen/input_height"
+        />
+
+    <include layout="@layout/indicator_view"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/ButtonAppStyle"
+        android:id="@+id/button_login_google"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        app:backgroundTint="@color/white"
+        android:textColor="@color/bg_app"
+        android:text="@string/continue_with_google"
+        app:icon="@drawable/ic_google"
+        app:iconGravity="start"
+        app:iconTint="@null"
+        />
+
+        <TextView
+            android:id="@+id/gotoRegister"
+            android:theme="@style/Text13_Semi_Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:selectAllOnFocus="false"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/input_height"
+            android:autoLink="all"
+            android:text="@string/goto_register"/>
+
+</LinearLayout>

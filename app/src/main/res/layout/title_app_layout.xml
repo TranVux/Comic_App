@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Title16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:ellipsize="end"
+        android:paddingEnd="@dimen/block_margin"
+        android:text="Mới phát hànhkjsdhjkhsjdhkgjhskdhgkjhsdkhgkjshdkjghkjhkjsdhgkjhdskhgjkshdjkghksjdhkjghskjdhgkhsdkg"
+        tools:ignore="RtlSymmetry" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/subTitle"
+            style="@style/SubTitle11"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_height="wrap_content"
+            android:paddingEnd="@dimen/block_margin"
+            android:text="Mới phát hànhkahskjfhkashfhkajshfkhakjshfkhaskhkjdsfalkshfkjhaskhfjhasjkfhkjhaskjhfkjahkajshfjkhas"
+            tools:ignore="RtlSymmetry" />
+
+        <LinearLayout
+            android:id="@+id/moreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <TextView
+                style="@style/SubTitle11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right_sm"
+                android:contentDescription="More Button" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

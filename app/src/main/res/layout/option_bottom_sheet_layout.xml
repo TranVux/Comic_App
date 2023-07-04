@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_bottom_sheet"
+    android:paddingHorizontal="@dimen/padding_default"
+    android:paddingTop="@dimen/block_margin">
+
+    <View
+        android:id="@+id/viewIndicator"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/card_radius"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/background_button_bottom_sheet" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Title16_Semi_Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewIndicator"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/card_radius"
+        android:text="Thể loại" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollIndicators="none" />
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_confirm"
+        style="@style/ButtonAppStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_below="@id/scrollView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/block_margin"
+        android:text="Xác nhận"
+        app:backgroundTint="@color/card_bg"
+        app:cornerRadius="@dimen/button_radius" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/block_margin"
+        android:layout_below="@+id/button_confirm" />
+
+</RelativeLayout>

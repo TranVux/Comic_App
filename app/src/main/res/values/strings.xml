@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Assignment</string>
+    <string name="email_placeholder">example@gmail.com</string>
+    <string name="sub_heading_login">Giúp bạn có nhưng trải nghiệm tuyệt vời hơn</string>
+    <string name="login">Đăng Nhập</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="re_password">Nhập lại mật khẩu</string>
+    <string name="password_placeholder">123136546@</string>
+    <string name="continue_with_google">Tiếp tục với Google</string>
+
+    <string name="goto_register">Chưa có tài khoản? <u>Đăng ký</u></string>
+    <string name="user_name">Tài khoản</string>
+    <string name="register">Đăng ký</string>
+    <string name="sub_heading_register">Tham gia với chúng tôi ngay bây giờ. Những bộ truyện thú vị đang đón chờ bạn</string>
+    <string name="go_to_login">Đã có tài khoản? <u>Đăng nhập</u></string>
+    <string name="home">Trang chủ</string>
+    <string name="explore">Khám phá</string>
+    <string name="user">Cá nhân</string>
+    <string name="favorite">Yêu thích</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="more">Xem thêm</string>
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+</resources>

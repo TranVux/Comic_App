@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_default"
+    android:paddingBottom="@dimen/padding_default"
+    tools:context=".views.DetailComicActivity">
+
+    <com.example.assignment.components.HeaderApp
+        android:id="@+id/header_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:app_enable_right_button="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/button_radius"
+                    app:cardCornerRadius="@dimen/button_radius">
+
+                    <ImageView
+                        android:id="@+id/thumbnail_comic"
+                        android:layout_width="105dp"
+                        android:layout_height="155dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image" />
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title_comic"
+                        style="@style/Title16_Semi_Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SINH RA TRỞ THÀNH NHÂN VẬT KHÔNG CÓ TRONG NGUYÊN TÁC SINH RA TRỞ THÀNH NHÂN VẬT KHÔNG CÓ TRONG NGUYÊN TÁC"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/category_comic"
+                        style="@style/SubTitle11_Semi_Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/button_radius"
+                        android:text="Action" />
+
+                    <TextView
+                        android:id="@+id/publish_by"
+                        style="@style/SubTitle11_Semi_Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/button_radius"
+                        android:text="By: TranVux" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/read_button"
+                            style="@style/ButtonAppStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:text="Đọc truyện"
+                            app:cornerRadius="@dimen/button_radius"
+                            tools:ignore="NestedWeights" />
+
+                        <View
+                            android:layout_width="@dimen/card_radius"
+                            android:layout_height="match_parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/favorite_button"
+                            style="@style/ButtonOutlineAppStyle"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="bottom"
+                            app:icon="@drawable/ic_favorite"
+                            app:iconGravity="textStart"
+                            app:iconPadding="0dp"
+                            app:iconTint="@color/white"
+                            app:strokeColor="@color/white" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/block_margin">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/expand_synopsis_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/card_default_height"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="@dimen/card_radius">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default">
+
+                        <TextView
+                            style="@style/Title16_Semi_Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mô tả" />
+
+                        <TextView
+                            android:id="@+id/text_synopsis"
+                            style="@style/SubTitle11_Semi_Bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:text="@string/lorem" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <View
+                    android:id="@+id/mask_synopsis"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gradient_synopsis"
+                    android:translationZ="10dp"
+                    android:visibility="visible" />
+
+            </FrameLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/expand_synopsis_button"
+                style="@style/ButtonAppStyle"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:translationY="-15dp"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="29dp"
+                app:icon="@drawable/ic_arrow_down"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconSize="15dp"
+                app:iconTint="@color/card_bg" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/more_info_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="@dimen/card_radius">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_default">
+
+                    <TextView
+                        style="@style/Title16_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Thông tin khác" />
+
+                    <TextView
+                        style="@style/SubTitle11_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/card_radius"
+                        android:text="Tiêu đề phụ" />
+
+                    <TextView
+                        android:id="@+id/text_sub_title"
+                        style="@style/Text13_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sword Art Online" />
+
+
+                    <TextView
+                        style="@style/SubTitle11_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/card_radius"
+                        android:text="Tác giả" />
+
+                    <TextView
+                        android:id="@+id/text_author"
+                        style="@style/Text13_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kawahara Reki" />
+
+
+                    <TextView
+                        style="@style/SubTitle11_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/card_radius"
+                        android:text="Quốc gia" />
+
+                    <TextView
+                        android:id="@+id/text_country"
+                        style="@style/Text13_Semi_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Japan" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

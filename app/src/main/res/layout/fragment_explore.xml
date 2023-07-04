@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column">
+
+            <com.example.assignment.components.TitleApp
+                android:id="@+id/titleRelease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_app"
+                android:paddingHorizontal="15dp"
+                app:app_subTitle="Những bộ truyện mới nhất dành cho bạn"
+                app:app_title="Mới phát hành!" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_marginTop="15dp"
+                    app:cardCornerRadius="@dimen/card_radius">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/pager_slider"
+                        android:background="@color/bg_app"
+                        android:layout_width="match_parent"
+                        android:layout_height="185dp" />
+
+                </androidx.cardview.widget.CardView>
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dot_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginBottom="15dp"
+                    android:translationZ="10dp"
+                    app:dotsColor="@color/primary"
+                    app:dotsSize="6dp"
+                    app:dotsSpacing="3dp"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/primary" />
+
+            </FrameLayout>
+
+            <com.example.assignment.components.TitleApp
+                android:id="@+id/titleCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/block_margin"
+                android:background="@color/bg_app"
+                android:paddingHorizontal="15dp"
+                app:app_subTitle="Gợi ý thể loại cho bạn"
+                app:app_title="Thể loại" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_default"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="@dimen/padding_default"
+                android:scrollIndicators="none" />
+
+            <com.example.assignment.components.TitleApp
+                android:id="@+id/titlePopular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/block_margin"
+                android:background="@color/bg_app"
+                android:paddingHorizontal="15dp"
+                app:app_subTitle="Rất nhiều bộ truyện thú vị tại đây"
+                app:app_title="Những bộ truyện phổ biến" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popular_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_default"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="@dimen/padding_default"
+                android:scrollIndicators="none" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ButtonAppStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/card_radius</item>
+        <item name="android:textSize">@dimen/text_title_16</item>
+        <item name="fontFamily">@font/inter_semi_bold</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="ButtonOutlineAppStyle" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/button_radius</item>
+    </style>
+
+    <style name="Heading25">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/inter_semi_bold</item>
+    </style>
+
+    <style name="Title20_Semi_Bold" parent="Heading25">
+        <item name="android:textSize">20sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="SubHeading11" parent="Heading25">
+        <item name="android:textSize">@dimen/text_title_13</item>
+    </style>
+
+    <style name="Title16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="Title16_Semi_Bold" parent="Title16">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+    </style>
+
+    <style name="SubTitle11" parent="Title16">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/text_sub_title_11</item>
+    </style>
+
+    <style name="SubTitle11_Semi_Bold" parent="SubTitle11">
+        <item name="fontFamily">@font/inter_semi_bold</item>
+    </style>
+
+    <style name="Text13_Medium" parent="Title16">
+        <item name="android:textSize">@dimen/text_title_13</item>
+    </style>
+
+    <style name="Text13_Semi_Bold" parent="Heading25">
+        <item name="android:textSize">@dimen/text_title_13</item>
+    </style>
+
+    <style name="OutlineEditTextLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:fontFamily">@font/inter_semi_bold</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/card_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/card_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/card_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/card_radius</item>
+        <item name="boxStrokeColor">@color/edit_text_layout</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeErrorColor">@color/error</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="placeholderTextColor">@color/text_secondary</item>
+        <item name="passwordToggleTint">@color/white</item>
+    </style>
+
+    <style name="OutlineEditTextLayoutPasswordStyle" parent="OutlineEditTextLayoutStyle">
+        <item name="passwordToggleEnabled">true</item>
+        <item name="passwordToggleDrawable">@drawable/toggle_password</item>
+    </style>
+
+    <style name="EditTextStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:maxLines">1</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <!--    style bottomsheet dialog fragment-->
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>
