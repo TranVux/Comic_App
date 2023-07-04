@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_default"
+    android:paddingTop="@dimen/button_radius"
+    tools:context=".views.ReadingActivity">
+
+    <com.example.assignment.components.HeaderApp
+        android:id="@+id/header_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:app_button_right_src="@drawable/ic_favorite_active"
+        app:app_has_sub_header_title="true"
+        app:app_header_title="Sword Art Online"
+        app:app_sub_header_title="Chương 1" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_content"
+            style="@style/SubTitle11_Semi_Bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.07"
+            android:lineHeight="18dp"
+            android:scrollbars="none"
+            android:text="@string/lorem_large"
+            android:textSize="16sp"
+            tools:targetApi="p" />
+
+    </ScrollView>
+
+</LinearLayout>

@@ -30,7 +30,7 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
     private ImageView buttonLeft, buttonRight, avatar;
     private TextView username, textSession, titleHeader, subTitleHeader;
 
-    private boolean isUserHeader;
+    private boolean isUserHeader, hasSubTitle;
 
     public HeaderApp(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -109,10 +109,18 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
 
             //handler center container
             String titleText = style.getString(R.styleable.HeaderApp_app_header_title);
-            String subText = style.getString(R.styleable.HeaderApp_app_sub_header_title);
+            boolean hasSubTitle = style.getBoolean(R.styleable.HeaderApp_app_has_sub_header_title, false);
 
             titleHeader.setText(titleText != null ? titleText : "");
-            subTitleHeader.setText(subText != null ? subText : "");
+
+            if (hasSubTitle) {
+                String subText = style.getString(R.styleable.HeaderApp_app_sub_header_title);
+                subTitleHeader.setVisibility(VISIBLE);
+                subTitleHeader.setText(subText != null ? subText : "");
+            } else {
+                subTitleHeader.setVisibility(GONE);
+            }
+
             //end handle center container
 
             //handle right container
@@ -138,6 +146,7 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
         buttonLeft.setOnClickListener(HeaderApp.this);
         buttonRight.setOnClickListener(HeaderApp.this);
         userContainer.setOnClickListener(HeaderApp.this);
+        centerContainer.setOnClickListener(HeaderApp.this);
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -162,6 +171,11 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
                 }
                 break;
             }
+            case R.id.center_container:
+                if (!isUserHeader) {
+                    headerButtonHandler.onCenterContainerClick();
+                }
+                break;
         }
     }
 
@@ -221,5 +235,7 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
         void onRightButtonClick();
 
         void onUserContainerClick();
+
+        void onCenterContainerClick();
     }
 }

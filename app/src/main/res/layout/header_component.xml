@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="wrap_content"
+    android:minHeight="50dp">
 
     <LinearLayout
         android:id="@+id/left_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -71,17 +71,22 @@
         android:id="@+id/center_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_centerVertical="true"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/title_header"
             style="@style/Title16_Semi_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingHorizontal="35dp"
             android:text="Thể loại" />
 
         <TextView
@@ -89,9 +94,11 @@
             style="@style/SubTitle11_Semi_Bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Thể loại"
-            android:visibility="gone" />
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="Thể loại" />
 
     </LinearLayout>
 
@@ -99,9 +106,8 @@
         android:id="@+id/right_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:orientation="vertical">
 

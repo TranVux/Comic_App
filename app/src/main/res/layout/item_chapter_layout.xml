@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_combo_box"
+    android:paddingHorizontal="@dimen/padding_default"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_chapter"
+        style="@style/SubTitle11_Semi_Bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingVertical="11dp"
+        android:text="Chuong 1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/text_secondary" />
+
+</LinearLayout>

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.Assignment"
         tools:targetApi="31">
         <activity
-            android:name=".views.DetailComicActivity"
+            android:name=".views.ReadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".views.DetailComicActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
             android:name=".views.DetailActivity"
             android:exported="true">
 
         </activity>
         <activity
             android:name=".views.NavigationActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".views.RegisterActivity"
             android:exported="true"

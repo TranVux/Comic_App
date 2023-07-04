@@ -116,12 +116,4 @@ public class AppAnimation {
             }
         });
     }
-
-    public static int dpToPixel(View v, int dp) {
-        return (int) (dp * v.getContext().getResources().getDisplayMetrics().density);
-    }
-
-    public static int pixelToDp(View v, int pixel) {
-        return (int) (pixel / v.getContext().getResources().getDisplayMetrics().density);
-    }
 }

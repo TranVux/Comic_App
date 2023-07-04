@@ -50,4 +50,6 @@ dependencies {
     //noinspection GradleDependency
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation 'com.github.Dimezis:BlurView:version-2.0.3'
+
+    implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
 }

@@ -10,6 +10,7 @@
         <!--        center container attrs-->
         <attr name="app_header_title" format="string" />
         <attr name="app_sub_header_title" format="string" />
+        <attr name="app_has_sub_header_title" format="boolean" />
 
         <!--        left container attrs-->
         <attr name="app_text_session" format="string" />
