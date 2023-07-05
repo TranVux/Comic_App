@@ -1,6 +1,5 @@
 package com.example.assignment.components;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -14,8 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.assignment.R;
-
-import java.util.Objects;
 
 public class TitleApp extends LinearLayout implements View.OnClickListener {
     static private final String TAG = TitleApp.class.getSimpleName();
@@ -66,9 +63,8 @@ public class TitleApp extends LinearLayout implements View.OnClickListener {
             //handle text sub title
             if (textSubTitle != null) {
                 subTitle.setText(textSubTitle);
-            } else {
-                subTitle.setVisibility(GONE);
             }
+            subTitle.setVisibility(isMore ? VISIBLE : GONE);
 
             //handle more button
             moreButton.setVisibility(isMore ? VISIBLE : GONE);

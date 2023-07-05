@@ -27,6 +27,7 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
 
     private HeaderButtonHandler headerButtonHandler;
     private LinearLayout leftContainer, centerContainer, rightContainer, userContainer;
+    private RelativeLayout parentContainer;
     private ImageView buttonLeft, buttonRight, avatar;
     private TextView username, textSession, titleHeader, subTitleHeader;
 
@@ -61,6 +62,7 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void init(TypedArray style) {
+        parentContainer = findViewById(R.id.parentContainer);
         leftContainer = findViewById(R.id.left_container);
         rightContainer = findViewById(R.id.right_container);
         centerContainer = findViewById(R.id.center_container);
@@ -147,6 +149,11 @@ public class HeaderApp extends RelativeLayout implements View.OnClickListener {
         buttonRight.setOnClickListener(HeaderApp.this);
         userContainer.setOnClickListener(HeaderApp.this);
         centerContainer.setOnClickListener(HeaderApp.this);
+    }
+
+    public void setHeaderAppVisibility(int visibility) {
+        parentContainer.setVisibility(visibility);
+        requestLayout();
     }
 
     @SuppressLint("NonConstantResourceId")

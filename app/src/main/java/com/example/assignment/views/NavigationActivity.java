@@ -2,23 +2,28 @@ package com.example.assignment.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.assignment.R;
 import com.example.assignment.adapters.ViewPagerAdapter;
+import com.example.assignment.components.HeaderApp;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class NavigationActivity extends AppCompatActivity {
+public class NavigationActivity extends FragmentActivity {
 
     private BottomNavigationView bottomNavigationView;
     private ViewPager2 pager2;
+    private HeaderApp headerApp;
     private static final String TAG = NavigationActivity.class.getSimpleName();
 
     @Override
@@ -32,6 +37,7 @@ public class NavigationActivity extends AppCompatActivity {
 
     public void init() {
         bottomNavigationView = findViewById(R.id.bottomTab);
+        headerApp = findViewById(R.id.header_app);
 
         pager2 = findViewById(R.id.view_pager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(NavigationActivity.this);
@@ -60,8 +66,18 @@ public class NavigationActivity extends AppCompatActivity {
                         pager2.setCurrentItem(3);
                         break;
                 }
+                handleHeaderApp(pager2.getCurrentItem());
+                Log.d(TAG, "onNavigationItemSelected: " + pager2.getCurrentItem());
                 return true;
             }
         });
+    }
+
+    public void handleHeaderApp(int currentTabIndex) {
+        if (currentTabIndex == 3) {
+            headerApp.setHeaderAppVisibility(View.GONE);
+        } else {
+            headerApp.setHeaderAppVisibility(View.VISIBLE);
+        }
     }
 }

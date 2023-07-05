@@ -1,6 +1,7 @@
 package com.example.assignment.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -37,10 +39,12 @@ public class ExploreFragment extends Fragment {
 
     private static final String TAG = ExploreFragment.class.getSimpleName();
 
+    private Context context;
     private ViewPager slider;
     private DotsIndicator dotsIndicator;
     //slide
     private SliderAdapter sliderAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private Timer timer;
     private int currentPage = 0;
     private boolean isPause = false;
@@ -85,6 +89,7 @@ public class ExploreFragment extends Fragment {
         dotsIndicator = view.findViewById(R.id.dot_indicator);
         popularList = view.findViewById(R.id.popular_list);
         categoryList = view.findViewById(R.id.category_list);
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
 
         setUpPopularList();
         setUpSlider();
@@ -170,6 +175,23 @@ public class ExploreFragment extends Fragment {
 
         slider.setAdapter(sliderAdapter);
 
+        slider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         dotsIndicator.setViewPager(slider);
     }
 
@@ -184,35 +206,64 @@ public class ExploreFragment extends Fragment {
                 return false;
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 200);
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (timer == null) {
+            handleAutoScrollSlide();
+        }
     }
 
     public ArrayList<Comic> getData() {
         ArrayList<Comic> listData = new ArrayList<>();
-
-        listData.add(new Comic("465465464", "Đấu la đại lục", "Đấu la đại lục", "China", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Đấu la đại lục", "Đấu la đại lục", "China", context.getResources().getString(R.string.lorem),
                 "https://hhhkungfu.tv/wp-content/uploads/Dau-La-Dai-Luc-2.jpg", "Action, Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Sword Art Online", "Sword Art Online", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Sword Art Online", "Sword Art Online", "Japan", context.getResources().getString(R.string.lorem),
                 "https://channel.mediacdn.vn/428462621602512896/2023/2/6/photo-1-16756724304802069391968.jpg", "Action, Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Đấu phá thương khung", "Đấu phá thương khung", "China", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Đấu phá thương khung", "Đấu phá thương khung", "China", context.getResources().getString(R.string.lorem),
                 "https://hhhkungfu.tv/wp-content/uploads/Dau-Pha-Thuong-Khung-5-320x449.jpg", "Action, Romance", new Author(), new User()));
 
-        listData.add(new Comic("465465464", "Jujutsu Kaisen", "Chú thuật hồi chiến", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Jujutsu Kaisen", "Chú thuật hồi chiến", "Japan", context.getResources().getString(R.string.lorem),
                 "https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg", "Action, Romance", new Author(), new User()));
 
-        listData.add(new Comic("465465464", "Tamako: Love Story", "Tamako: Love Story", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Tamako: Love Story", "Tamako: Love Story", "Japan", context.getResources().getString(R.string.lorem),
                 "https://m.media-amazon.com/images/M/MV5BMTYzOGU4OTItNmU4NC00MmViLWEyNzctMmZkMzgxZjM5MjExXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg", "Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Sword Art Online Progressive 1", "Sword Art Online Progressive 1", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Sword Art Online Progressive 1", "Sword Art Online Progressive 1", "Japan", context.getResources().getString(R.string.lorem),
                 "https://upload.wikimedia.org/wikipedia/vi/e/ec/%C3%81p_ph%C3%ADch_phim_Kuruki_Yuuyami_no_Scherzo.jpg", "Action, Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Sword Art Online Progressive 2", "Sword Art Online Progressive 2", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Sword Art Online Progressive 2", "Sword Art Online Progressive 2", "Japan", context.getResources().getString(R.string.lorem),
                 "https://cdn.galaxycine.vn/media/2022/2/18/img-6357_1645152824607.JPG", "Action, Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Mê cung huyền thoại", "Mê cung huyền thoại", "Japan", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Mê cung huyền thoại", "Mê cung huyền thoại", "Japan", context.getResources().getString(R.string.lorem),
                 "https://upload.wikimedia.org/wikipedia/vi/c/cd/MagiCover01.jpg", "Action, Romance", new Author(), new User()));
-        listData.add(new Comic("465465464", "Đấu phá thương khung", "Đấu phá thương khung", "China", requireContext().getResources().getString(R.string.lorem),
+        listData.add(new Comic("465465464", "Đấu phá thương khung", "Đấu phá thương khung", "China", context.getResources().getString(R.string.lorem),
                 "https://photo2.tinhte.vn/data/attachment-files/2022/08/6098799_dau-pha-thuong-khung-phan-5-300x450_2.jpg", "Action, Romance", new Author(), new User()));
         return listData;
     }

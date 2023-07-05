@@ -51,6 +51,12 @@
         <item name="android:textSize">@dimen/text_sub_title_11</item>
     </style>
 
+    <style name="SubTitle11_Regular" parent="Title16">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_sub_title_11</item>
+        <item name="fontFamily">@font/inter_regular</item>
+    </style>
+
     <style name="SubTitle11_Semi_Bold" parent="SubTitle11">
         <item name="fontFamily">@font/inter_semi_bold</item>
     </style>

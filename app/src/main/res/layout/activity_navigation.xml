@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:background="@color/bg_app"
     tools:context=".views.NavigationActivity">
 
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/bottomTab"
-        android:layout_below="@id/header_app"/>
+        android:layout_below="@id/header_app" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomTab"

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
@@ -34,9 +35,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
-
     private static final String TAG = HomeFragment.class.getSimpleName();
-
     private ViewPager slider;
     private DotsIndicator dotsIndicator;
 
@@ -47,6 +46,7 @@ public class HomeFragment extends Fragment {
     private boolean isPause = false;
     // end slider
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView popularList, continueList;
     private AdapterComicVertical adapterComicVertical;
     private AdapterComicHorizontal adapterComicHorizontal;
@@ -86,6 +86,7 @@ public class HomeFragment extends Fragment {
         dotsIndicator = view.findViewById(R.id.dot_indicator);
         popularList = view.findViewById(R.id.popular_list);
         continueList = view.findViewById(R.id.continue_list);
+        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
 
         setUpPopularList();
         setupContinueList();
@@ -113,6 +114,7 @@ public class HomeFragment extends Fragment {
             }
         }, 5000, 5000);
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     public void setupContinueList() {
@@ -153,6 +155,7 @@ public class HomeFragment extends Fragment {
         popularList.setAdapter(adapterComicVertical);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void setUpSlider() {
         sliderAdapter = new SliderAdapter(requireContext(), getData(), new SliderAdapter.HandleItemClick() {
             @Override
@@ -164,10 +167,27 @@ public class HomeFragment extends Fragment {
             public void onActionDown(int currentPos) {
                 //handle scroll for viewpager
                 isPause = true;
+                swipeRefreshLayout.setEnabled(false);
             }
         });
 
         slider.setAdapter(sliderAdapter);
+        slider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         dotsIndicator.setViewPager(slider);
     }
@@ -183,11 +203,36 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //fake fetch data
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 200);
+            }
+        });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (timer == null) {
+            handleAutoScrollSlide();
+        }
     }
 
     public ArrayList<Comic> getData() {

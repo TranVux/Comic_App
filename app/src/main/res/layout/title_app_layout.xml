@@ -31,7 +31,7 @@
             android:ellipsize="end"
             android:layout_height="wrap_content"
             android:paddingEnd="@dimen/block_margin"
-            android:text="Mới phát hànhkahskjfhkashfhkajshfkhakjshfkhaskhkjdsfalkshfkjhaskhfjhasjkfhkjhaskjhfkjahkajshfjkhas"
+            android:text=""
             tools:ignore="RtlSymmetry" />
 
         <LinearLayout
@@ -39,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            android:layout_gravity="end"
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
 
