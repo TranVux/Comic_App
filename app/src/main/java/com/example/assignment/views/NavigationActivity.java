@@ -16,58 +16,52 @@ import android.view.View;
 import com.example.assignment.R;
 import com.example.assignment.adapters.ViewPagerAdapter;
 import com.example.assignment.components.HeaderApp;
+import com.example.assignment.databinding.ActivityNavigationBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class NavigationActivity extends FragmentActivity {
-
-    private BottomNavigationView bottomNavigationView;
-    private ViewPager2 pager2;
-    private HeaderApp headerApp;
     private static final String TAG = NavigationActivity.class.getSimpleName();
+    private ActivityNavigationBinding activityNavigationBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        activityNavigationBinding = ActivityNavigationBinding.inflate(getLayoutInflater());
+        setContentView(activityNavigationBinding.getRoot());
 
         init();
         addEvent();
     }
 
     public void init() {
-        bottomNavigationView = findViewById(R.id.bottomTab);
-        headerApp = findViewById(R.id.header_app);
-
-        pager2 = findViewById(R.id.view_pager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(NavigationActivity.this);
-        pager2.setAdapter(viewPagerAdapter);
+        activityNavigationBinding.viewPager.setAdapter(viewPagerAdapter);
 
-        pager2.setUserInputEnabled(false);
+        activityNavigationBinding.viewPager.setUserInputEnabled(false);
     }
 
     public void addEvent() {
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        activityNavigationBinding.bottomTab.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 switch (item.getItemId()) {
                     case R.id.homeFragment:
-                        pager2.setCurrentItem(0);
+                        activityNavigationBinding.viewPager.setCurrentItem(0);
                         break;
                     case R.id.exploreFragment:
-                        pager2.setCurrentItem(1);
+                        activityNavigationBinding.viewPager.setCurrentItem(1);
                         break;
                     case R.id.favoriteFragment:
-                        pager2.setCurrentItem(2);
+                        activityNavigationBinding.viewPager.setCurrentItem(2);
                         break;
                     case R.id.userFragment:
-                        pager2.setCurrentItem(3);
+                        activityNavigationBinding.viewPager.setCurrentItem(3);
                         break;
                 }
-                handleHeaderApp(pager2.getCurrentItem());
-                Log.d(TAG, "onNavigationItemSelected: " + pager2.getCurrentItem());
+                handleHeaderApp(activityNavigationBinding.viewPager.getCurrentItem());
                 return true;
             }
         });
@@ -75,9 +69,9 @@ public class NavigationActivity extends FragmentActivity {
 
     public void handleHeaderApp(int currentTabIndex) {
         if (currentTabIndex == 3) {
-            headerApp.setHeaderAppVisibility(View.GONE);
+            activityNavigationBinding.headerApp.setHeaderAppVisibility(View.GONE);
         } else {
-            headerApp.setHeaderAppVisibility(View.VISIBLE);
+            activityNavigationBinding.headerApp.setHeaderAppVisibility(View.VISIBLE);
         }
     }
 }

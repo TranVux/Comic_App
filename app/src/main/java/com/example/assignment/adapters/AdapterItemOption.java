@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.assignment.R;
+import com.example.assignment.databinding.ItemOptionLayoutBinding;
 import com.example.assignment.fragments.OptionBottomSheetDialog.OptionBottomSheetType;
 import com.example.assignment.models.Category;
 import com.example.assignment.utils.DiffUtilOptionAdapter;
@@ -51,8 +52,8 @@ public class AdapterItemOption extends RecyclerView.Adapter<AdapterItemOption.It
     @NonNull
     @Override
     public ItemOptionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_option_layout, parent, false);
-        return new ItemOptionViewHolder(view);
+        ItemOptionLayoutBinding itemOptionLayoutBinding = ItemOptionLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ItemOptionViewHolder(itemOptionLayoutBinding);
     }
 
     @Override
@@ -71,16 +72,16 @@ public class AdapterItemOption extends RecyclerView.Adapter<AdapterItemOption.It
         } else if (type == OptionBottomSheetType.COUNTRY) {
             valueString = ((String) listData.get(position));
         }
-        holder.textItem.setText(valueString);
+        holder.itemOptionLayoutBinding.textOption.setText(valueString);
 
-        holder.item.setCardBackgroundColor(
+        holder.itemOptionLayoutBinding.itemOption.setCardBackgroundColor(
                 position == itemSelected ?
                         Color.parseColor("#00AAD3") : Color.parseColor("#1E2027")
         );
 
 
         String finalValueString = valueString;
-        holder.item.setOnClickListener(new View.OnClickListener() {
+        holder.itemOptionLayoutBinding.itemOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 itemOptionHandler.onItemClick(finalValueString, position);
@@ -88,15 +89,12 @@ public class AdapterItemOption extends RecyclerView.Adapter<AdapterItemOption.It
         });
     }
 
-    public class ItemOptionViewHolder extends RecyclerView.ViewHolder {
-        CardView item;
-        TextView textItem;
+    public static class ItemOptionViewHolder extends RecyclerView.ViewHolder {
+        private final ItemOptionLayoutBinding itemOptionLayoutBinding;
 
-        public ItemOptionViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            item = itemView.findViewById(R.id.item_option);
-            textItem = itemView.findViewById(R.id.text_option);
+        public ItemOptionViewHolder(ItemOptionLayoutBinding itemOptionLayoutBinding) {
+            super(itemOptionLayoutBinding.getRoot());
+            this.itemOptionLayoutBinding = itemOptionLayoutBinding;
         }
     }
 

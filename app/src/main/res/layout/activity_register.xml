@@ -11,10 +11,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:scrollIndicators="none"
+        android:layout_height="match_parent"
         android:elevation="0dp"
         android:fitsSystemWindows="true"
-        android:layout_height="match_parent">
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,9 +57,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:maxLines="1"
                     android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:maxLines="1"
                     android:nextFocusForward="@id/user_name_edit_text"
                     android:textColor="@color/white" />
 
@@ -76,10 +76,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:maxLines="1"
-                    android:imeOptions="actionNext"
                     android:layout_height="match_parent"
+                    android:imeOptions="actionNext"
                     android:inputType="text"
+                    android:maxLines="1"
                     android:nextFocusForward="@id/password_edit_text"
                     android:textColor="@color/white" />
 
@@ -97,9 +97,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:maxLines="1"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
+                    android:maxLines="1"
                     android:nextFocusForward="@id/re_password_edit_text"
                     android:textColor="@color/white" />
 
@@ -118,9 +118,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:imeOptions="actionDone"
                     android:nextFocusForward="@id/button_register"
                     android:textColor="@color/white" />
 

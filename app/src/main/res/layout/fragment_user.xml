@@ -7,7 +7,7 @@
     android:paddingHorizontal="@dimen/padding_default">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_layout"
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -152,7 +152,7 @@
                             android:translationZ="2dp" />
 
                         <LinearLayout
-                            android:id="@+id/option_logout"
+                            android:id="@+id/option_log_in_out"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"

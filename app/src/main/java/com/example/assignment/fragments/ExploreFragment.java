@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -22,14 +21,13 @@ import android.view.ViewGroup;
 import com.example.assignment.R;
 import com.example.assignment.adapters.AdapterCategory;
 import com.example.assignment.adapters.AdapterComicVertical;
-import com.example.assignment.adapters.GridSpacingItemDecoration;
+import com.example.assignment.utils.GridSpacingItemDecoration;
 import com.example.assignment.adapters.SliderAdapter;
+import com.example.assignment.databinding.FragmentExploreBinding;
 import com.example.assignment.models.Author;
 import com.example.assignment.models.Category;
 import com.example.assignment.models.Comic;
 import com.example.assignment.models.User;
-import com.example.assignment.views.NavigationActivity;
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -40,18 +38,15 @@ public class ExploreFragment extends Fragment {
     private static final String TAG = ExploreFragment.class.getSimpleName();
 
     private Context context;
-    private ViewPager slider;
-    private DotsIndicator dotsIndicator;
     //slide
     private SliderAdapter sliderAdapter;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private Timer timer;
     private int currentPage = 0;
     private boolean isPause = false;
     //slide
-    private RecyclerView popularList, categoryList;
     private AdapterComicVertical adapterComicVertical;
     private AdapterCategory adapterCategory;
+    private FragmentExploreBinding fragmentExploreBinding;
 
     public ExploreFragment() {
         // Required empty public constructor
@@ -70,31 +65,25 @@ public class ExploreFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false);
+        fragmentExploreBinding = FragmentExploreBinding.inflate(inflater, container, false);
+        return fragmentExploreBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        init(view);
+        init();
         addListener();
     }
 
-    public void init(View view) {
-        slider = view.findViewById(R.id.pager_slider);
-        dotsIndicator = view.findViewById(R.id.dot_indicator);
-        popularList = view.findViewById(R.id.popular_list);
-        categoryList = view.findViewById(R.id.category_list);
-        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
-
+    public void init() {
         setUpPopularList();
         setUpSlider();
         setUpListCategory();
-
         handleAutoScrollSlide();
     }
 
@@ -106,7 +95,7 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-        categoryList.setAdapter(adapterCategory);
+        fragmentExploreBinding.categoryList.setAdapter(adapterCategory);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(5, StaggeredGridLayoutManager.VERTICAL) {
             @Override
@@ -114,9 +103,9 @@ public class ExploreFragment extends Fragment {
                 return false;
             }
         };
-        categoryList.setLayoutManager(gridLayoutManager);
+        fragmentExploreBinding.categoryList.setLayoutManager(gridLayoutManager);
 
-        categoryList.addItemDecoration(new GridSpacingItemDecoration(5, (int) getResources().getDimension(R.dimen.card_radius), false));
+        fragmentExploreBinding.categoryList.addItemDecoration(new GridSpacingItemDecoration(5, (int) getResources().getDimension(R.dimen.card_radius), false));
     }
 
     public void handleAutoScrollSlide() {
@@ -127,7 +116,7 @@ public class ExploreFragment extends Fragment {
                 if (currentPage == getData().size() - 1) {
                     currentPage = 0;
                 }
-                slider.setCurrentItem(currentPage++, true);
+                fragmentExploreBinding.pagerSlider.setCurrentItem(currentPage++, true);
             }
         };
 
@@ -148,16 +137,16 @@ public class ExploreFragment extends Fragment {
                 return false;
             }
         };
-        popularList.setLayoutManager(gridLayoutManager);
+        fragmentExploreBinding.popularList.setLayoutManager(gridLayoutManager);
 
-        popularList.addItemDecoration(new GridSpacingItemDecoration(3, (int) getResources().getDimension(R.dimen.card_radius), false));
+        fragmentExploreBinding.popularList.addItemDecoration(new GridSpacingItemDecoration(3, (int) getResources().getDimension(R.dimen.card_radius), false));
         adapterComicVertical = new AdapterComicVertical(requireContext(), getData(), new AdapterComicVertical.ComicListenerHandler() {
             @Override
             public void onItemClick(Comic comic) {
                 Log.d(TAG, "onItemClick: " + comic.getTitle());
             }
         });
-        popularList.setAdapter(adapterComicVertical);
+        fragmentExploreBinding.popularList.setAdapter(adapterComicVertical);
     }
 
     public void setUpSlider() {
@@ -173,9 +162,9 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-        slider.setAdapter(sliderAdapter);
+        fragmentExploreBinding.pagerSlider.setAdapter(sliderAdapter);
 
-        slider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        fragmentExploreBinding.pagerSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -192,12 +181,12 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-        dotsIndicator.setViewPager(slider);
+        fragmentExploreBinding.dotIndicator.setViewPager(fragmentExploreBinding.pagerSlider);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     public void addListener() {
-        slider.setOnTouchListener(new View.OnTouchListener() {
+        fragmentExploreBinding.pagerSlider.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -207,13 +196,13 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        fragmentExploreBinding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        fragmentExploreBinding.swipeRefreshLayout.setRefreshing(false);
                     }
                 }, 200);
             }

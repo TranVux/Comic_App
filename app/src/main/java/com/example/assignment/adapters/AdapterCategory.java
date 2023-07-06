@@ -6,17 +6,14 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.assignment.R;
+import com.example.assignment.databinding.CategoryLayoutItemBinding;
 import com.example.assignment.models.Category;
 
 import java.util.ArrayList;
@@ -32,6 +29,7 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Catego
         this.categoryHandlerListener = categoryHandlerListener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setListCategory(ArrayList<Category> listCategory) {
         this.listCategory = listCategory;
         notifyDataSetChanged();
@@ -40,22 +38,22 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Catego
     @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_layout_item, parent, false);
-        return new CategoryViewHolder(view);
+        CategoryLayoutItemBinding categoryLayoutItemBinding = CategoryLayoutItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new CategoryViewHolder(categoryLayoutItemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (listCategory.get(position) == null) return;
 
-        holder.categoryTitle.setText(listCategory.get(position).getTitle());
-        holder.categoryBackground.setCardBackgroundColor(Color.parseColor(listCategory.get(position).getDisplayColor()));
+        holder.categoryLayoutItemBinding.categoryText.setText(listCategory.get(position).getTitle());
+        holder.categoryLayoutItemBinding.bgCategory.setCardBackgroundColor(Color.parseColor(listCategory.get(position).getDisplayColor()));
         Glide.with(context).load(listCategory.get(position).getThumbnail())
                 .placeholder(R.drawable.placeholder_image).override(100, 100)
                 .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
-                .into(holder.categoryImage);
+                .into(holder.categoryLayoutItemBinding.imageCategory);
 
-        holder.categoryItem.setOnClickListener(new View.OnClickListener() {
+        holder.categoryLayoutItemBinding.itemCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 categoryHandlerListener.onItemClick(listCategory.get(position));
@@ -69,20 +67,12 @@ public class AdapterCategory extends RecyclerView.Adapter<AdapterCategory.Catego
         return listCategory.size();
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    public static class CategoryViewHolder extends RecyclerView.ViewHolder {
+        private final CategoryLayoutItemBinding categoryLayoutItemBinding;
 
-        LinearLayout categoryItem;
-        ImageView categoryImage;
-        CardView categoryBackground;
-        TextView categoryTitle;
-
-        public CategoryViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            categoryItem = itemView.findViewById(R.id.item_category);
-            categoryImage = itemView.findViewById(R.id.image_category);
-            categoryBackground = itemView.findViewById(R.id.bg_category);
-            categoryTitle = itemView.findViewById(R.id.category_text);
+        public CategoryViewHolder(CategoryLayoutItemBinding categoryLayoutItemBinding) {
+            super(categoryLayoutItemBinding.getRoot());
+            this.categoryLayoutItemBinding = categoryLayoutItemBinding;
         }
     }
 

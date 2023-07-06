@@ -13,7 +13,7 @@
         app:cardCornerRadius="@dimen/button_radius">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/image_thumbnail"
             android:layout_width="150dp"
             android:layout_height="105dp"
             android:adjustViewBounds="true"

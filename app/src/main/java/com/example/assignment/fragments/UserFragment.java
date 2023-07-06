@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 
 import com.example.assignment.R;
 import com.example.assignment.adapters.AdapterComicHorizontal;
+import com.example.assignment.databinding.FragmentUserBinding;
 import com.example.assignment.models.Author;
 import com.example.assignment.models.Comic;
 import com.example.assignment.models.User;
@@ -29,10 +30,8 @@ import java.util.TimerTask;
 
 public class UserFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = UserFragment.class.getSimpleName();
+    private FragmentUserBinding fragmentUserBinding;
     private AdapterComicHorizontal adapterComicHistory, adapterComicContinue;
-    private RecyclerView historyList, continueList;
-    private LinearLayout optionChangePass, optionLogInOut;
-    private SwipeRefreshLayout swipeRefreshLayout;
 
     public UserFragment() {
         // Required empty public constructor
@@ -54,39 +53,34 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user, container, false);
+        fragmentUserBinding = FragmentUserBinding.inflate(inflater, container, false);
+        return fragmentUserBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(view);
+        init();
         addEventListener();
     }
 
 
-    public void init(View view) {
-        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
-        continueList = view.findViewById(R.id.continue_list);
-        historyList = view.findViewById(R.id.history_list);
-        optionChangePass = view.findViewById(R.id.option_change_pass);
-        optionLogInOut = view.findViewById(R.id.option_logout);
-
+    public void init() {
         setUpHistoryList();
         setUpContinueList();
     }
 
     public void addEventListener() {
-        optionChangePass.setOnClickListener(UserFragment.this);
-        optionLogInOut.setOnClickListener(UserFragment.this);
+        fragmentUserBinding.optionChangePass.setOnClickListener(UserFragment.this);
+        fragmentUserBinding.optionLogInOut.setOnClickListener(UserFragment.this);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        fragmentUserBinding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        fragmentUserBinding.swipeRefreshLayout.setRefreshing(false);
                     }
                 }, 200);
             }
@@ -96,7 +90,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("ClickableViewAccessibility")
     public void setUpContinueList() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        continueList.setLayoutManager(layoutManager);
+        fragmentUserBinding.continueList.setLayoutManager(layoutManager);
 
         adapterComicContinue = new AdapterComicHorizontal(requireContext(), getData(), new AdapterComicHorizontal.ComicListenerHandler() {
             @Override
@@ -110,14 +104,14 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        continueList.setAdapter(adapterComicContinue);
+        fragmentUserBinding.continueList.setAdapter(adapterComicContinue);
     }
 
 
     @SuppressLint("ClickableViewAccessibility")
     public void setUpHistoryList() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        historyList.setLayoutManager(layoutManager);
+       fragmentUserBinding.historyList.setLayoutManager(layoutManager);
 
         adapterComicHistory = new AdapterComicHorizontal(requireContext(), getData(), new AdapterComicHorizontal.ComicListenerHandler() {
             @Override
@@ -131,7 +125,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        historyList.setAdapter(adapterComicHistory);
+        fragmentUserBinding.historyList.setAdapter(adapterComicHistory);
     }
 
     public ArrayList<Comic> getData() {
@@ -160,13 +154,14 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         return listData;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.option_change_pass:
                 Log.d(TAG, "onClick: changepass");
                 break;
-            case R.id.option_logout:
+            case R.id.option_log_in_out:
                 Log.d(TAG, "onClick: log inout");
                 break;
         }

@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.assignment.R;
+import com.example.assignment.databinding.ActivityDetailBinding;
 import com.example.assignment.fragments.OptionBottomSheetDialog;
 import com.example.assignment.fragments.OptionBottomSheetDialog.*;
 import com.example.assignment.models.Category;
@@ -20,9 +21,7 @@ import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = DetailActivity.class.getSimpleName();
-    private LinearLayout buttonCategory, buttonCountry;
-    private ImageView imageCategory, imageCountry;
-    private TextView choiced;
+    private ActivityDetailBinding activityDetailBinding;
     private int defaultSelectedItemCategoryIndex = 0;
     private int defaultSelectedItemCountryIndex = 0;
     private String textCategorySelected = "";
@@ -32,23 +31,19 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        activityDetailBinding = ActivityDetailBinding.inflate(getLayoutInflater());
+        setContentView(activityDetailBinding.getRoot());
 
         init();
         addEventListener();
     }
 
     public void init() {
-        buttonCategory = findViewById(R.id.button_category);
-        buttonCountry = findViewById(R.id.button_country);
-        imageCategory = findViewById(R.id.image_category);
-        imageCountry = findViewById(R.id.image_country);
-        choiced = findViewById(R.id.choice);
     }
 
     public void addEventListener() {
-        buttonCountry.setOnClickListener(DetailActivity.this);
-        buttonCategory.setOnClickListener(DetailActivity.this);
+        activityDetailBinding.buttonCountry.setOnClickListener(DetailActivity.this);
+        activityDetailBinding.buttonCategory.setOnClickListener(DetailActivity.this);
     }
 
     public void handleBottomSheetOption(OptionBottomSheetType type) {
@@ -93,15 +88,16 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         if (Objects.equals(textCountrySelected, "") && Objects.equals(textCategorySelected, "")) {
             textDecoration = "";
-            choiced.setVisibility(View.GONE);
-        } else if (Objects.equals(textCountrySelected, "") || Objects.equals(textCategorySelected, "")) {
-            choiced.setVisibility(View.VISIBLE);
-            textDecoration = "";
-            choiced.setText("Đã chọn: ".concat(textCategorySelected).concat(textDecoration).concat(textCountrySelected));
+            activityDetailBinding.choice.setVisibility(View.GONE);
         } else {
-            choiced.setVisibility(View.VISIBLE);
-            textDecoration = " • ";
-            choiced.setText("Đã chọn: ".concat(textCategorySelected).concat(textDecoration).concat(textCountrySelected));
+            activityDetailBinding.choice.setVisibility(View.VISIBLE);
+            if (Objects.equals(textCountrySelected, "") || Objects.equals(textCategorySelected, "")) {
+                textDecoration = "";
+                activityDetailBinding.choice.setText("Đã chọn: ".concat(textCategorySelected).concat(textDecoration).concat(textCountrySelected));
+            } else {
+                textDecoration = " • ";
+                activityDetailBinding.choice.setText("Đã chọn: ".concat(textCategorySelected).concat(textDecoration).concat(textCountrySelected));
+            }
         }
     }
 

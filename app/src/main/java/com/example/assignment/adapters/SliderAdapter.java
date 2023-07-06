@@ -17,6 +17,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.assignment.R;
+import com.example.assignment.databinding.ItemSliderLayoutBinding;
 import com.example.assignment.models.Comic;
 
 import java.util.ArrayList;
@@ -40,40 +41,32 @@ public class SliderAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_slider_layout, container, false);
-
-        BlurView blurView = view.findViewById(R.id.blur_view);
-        TextView title = view.findViewById(R.id.title);
-        TextView categories = view.findViewById(R.id.category);
-        TextView synopsis = view.findViewById(R.id.synopsis);
-        ImageView background = view.findViewById(R.id.background_image);
-        ImageView thumbnail = view.findViewById(R.id.thumbnail_image);
-
-        setUpBlurView(blurView);
+        ItemSliderLayoutBinding itemSliderLayoutBinding = ItemSliderLayoutBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
+        setUpBlurView(itemSliderLayoutBinding.blurView);
 
         if (listComic.get(position) != null) {
-            title.setText(listComic.get(position).getTitle());
-            categories.setText(listComic.get(position).getCategories());
-            synopsis.setText(listComic.get(position).getSynopsis());
+            itemSliderLayoutBinding.title.setText(listComic.get(position).getTitle());
+            itemSliderLayoutBinding.category.setText(listComic.get(position).getCategories());
+            itemSliderLayoutBinding.synopsis.setText(listComic.get(position).getSynopsis());
 
             Glide.with(context).load(listComic.get(position).getThumbnail())
                     .override(330, 185).placeholder(R.drawable.placeholder_image)
                     .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(background);
+                    .into(itemSliderLayoutBinding.backgroundImage);
 
             Glide.with(context).load(listComic.get(position).getThumbnail())
                     .placeholder(R.drawable.placeholder_image)
                     .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(thumbnail);
+                    .into(itemSliderLayoutBinding.thumbnailImage);
 
-            blurView.setOnClickListener(new View.OnClickListener() {
+            itemSliderLayoutBinding.blurView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     handleItemClick.onItemClick(listComic.get(position));
                 }
             });
 
-            blurView.setOnTouchListener(new View.OnTouchListener() {
+            itemSliderLayoutBinding.blurView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
                     if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -84,9 +77,9 @@ public class SliderAdapter extends PagerAdapter {
             });
         }
 
-        container.addView(view);
+        container.addView(itemSliderLayoutBinding.getRoot());
 
-        return view;
+        return itemSliderLayoutBinding.getRoot();
     }
 
     @Override

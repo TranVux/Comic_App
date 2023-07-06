@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.assignment.R;
 import com.example.assignment.components.HeaderApp;
+import com.example.assignment.databinding.ActivityReadingBinding;
 import com.example.assignment.fragments.ReadingBottomSheetFragment;
 import com.example.assignment.models.Chapter;
 import com.example.assignment.utils.Convert;
@@ -16,33 +17,30 @@ import java.util.ArrayList;
 
 public class ReadingActivity extends AppCompatActivity {
     private final static String TAG = ReadingActivity.class.getSimpleName();
-    private HeaderApp headerApp;
-    private TextView textContent;
+    private ActivityReadingBinding activityReadingBinding;
     private float textSize;
-    private Chapter currentChapter;
     private int currentChapterSelectedIndex;
+    private Chapter currentChapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reading);
+        activityReadingBinding = ActivityReadingBinding.inflate(getLayoutInflater());
+        setContentView(activityReadingBinding.getRoot());
 
         init();
         addEventListener();
     }
 
     public void init() {
-        headerApp = findViewById(R.id.header_app);
-        textContent = findViewById(R.id.text_content);
-
-        textSize = Convert.pixelsToSp(ReadingActivity.this, textContent.getTextSize());
+        textSize = Convert.pixelsToSp(ReadingActivity.this, activityReadingBinding.textContent.getTextSize());
 
         currentChapterSelectedIndex = 0;
         currentChapter = getData().get(currentChapterSelectedIndex);
     }
 
     public void addEventListener() {
-        headerApp.setHeaderButtonHandler(new HeaderApp.HeaderButtonHandler() {
+        activityReadingBinding.headerApp.setHeaderButtonHandler(new HeaderApp.HeaderButtonHandler() {
             @Override
             public void onLeftButtonClick() {
 
@@ -64,7 +62,7 @@ public class ReadingActivity extends AppCompatActivity {
                         .setHandlerFontSizeChangeListener(new ReadingBottomSheetFragment.HandlerFontSizeChangeListener() {
                             @Override
                             public void onChange(float _textSize) {
-                                textContent.setTextSize(_textSize);
+                                activityReadingBinding.textContent.setTextSize(_textSize);
                                 textSize = _textSize;
                             }
 

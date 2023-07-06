@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -22,13 +21,12 @@ import android.view.ViewGroup;
 import com.example.assignment.R;
 import com.example.assignment.adapters.AdapterComicHorizontal;
 import com.example.assignment.adapters.AdapterComicVertical;
-import com.example.assignment.adapters.GridSpacingItemDecoration;
+import com.example.assignment.utils.GridSpacingItemDecoration;
 import com.example.assignment.adapters.SliderAdapter;
+import com.example.assignment.databinding.FragmentHomeBinding;
 import com.example.assignment.models.Author;
 import com.example.assignment.models.Comic;
 import com.example.assignment.models.User;
-import com.example.assignment.views.NavigationActivity;
-import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -36,8 +34,7 @@ import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
-    private ViewPager slider;
-    private DotsIndicator dotsIndicator;
+    private FragmentHomeBinding fragmentHomeBinding;
 
     //slider
     private SliderAdapter sliderAdapter;
@@ -46,8 +43,6 @@ public class HomeFragment extends Fragment {
     private boolean isPause = false;
     // end slider
 
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private RecyclerView popularList, continueList;
     private AdapterComicVertical adapterComicVertical;
     private AdapterComicHorizontal adapterComicHorizontal;
 
@@ -68,26 +63,21 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        fragmentHomeBinding = FragmentHomeBinding.inflate(inflater, container, false);
+        return fragmentHomeBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        init(view);
+        init();
         addListener();
     }
 
-    public void init(View view) {
-        slider = view.findViewById(R.id.pager_slider);
-        dotsIndicator = view.findViewById(R.id.dot_indicator);
-        popularList = view.findViewById(R.id.popular_list);
-        continueList = view.findViewById(R.id.continue_list);
-        swipeRefreshLayout = view.findViewById(R.id.swipe_layout);
-
+    public void init() {
         setUpPopularList();
         setupContinueList();
         setUpSlider();
@@ -102,7 +92,7 @@ public class HomeFragment extends Fragment {
                 if (currentPage == getData().size() - 1) {
                     currentPage = 0;
                 }
-                slider.setCurrentItem(currentPage++, true);
+                fragmentHomeBinding.pagerSlider.setCurrentItem(currentPage++, true);
             }
         };
 
@@ -119,7 +109,7 @@ public class HomeFragment extends Fragment {
     @SuppressLint("ClickableViewAccessibility")
     public void setupContinueList() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
-        continueList.setLayoutManager(layoutManager);
+        fragmentHomeBinding.continueList.setLayoutManager(layoutManager);
 
         adapterComicHorizontal = new AdapterComicHorizontal(requireContext(), getData(), new AdapterComicHorizontal.ComicListenerHandler() {
             @Override
@@ -132,7 +122,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        continueList.setAdapter(adapterComicHorizontal);
+        fragmentHomeBinding.continueList.setAdapter(adapterComicHorizontal);
     }
 
     public void setUpPopularList() {
@@ -142,9 +132,9 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         };
-        popularList.setLayoutManager(gridLayoutManager);
+       fragmentHomeBinding.popularList.setLayoutManager(gridLayoutManager);
 
-        popularList.addItemDecoration(new GridSpacingItemDecoration(3, (int) getResources().getDimension(R.dimen.card_radius), false));
+        fragmentHomeBinding.popularList.addItemDecoration(new GridSpacingItemDecoration(3, (int) getResources().getDimension(R.dimen.card_radius), false));
 
         adapterComicVertical = new AdapterComicVertical(requireContext(), getData(), new AdapterComicVertical.ComicListenerHandler() {
             @Override
@@ -152,7 +142,7 @@ public class HomeFragment extends Fragment {
                 Log.d(TAG, "onItemClick: " + comic.getTitle());
             }
         });
-        popularList.setAdapter(adapterComicVertical);
+        fragmentHomeBinding.popularList.setAdapter(adapterComicVertical);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -167,12 +157,12 @@ public class HomeFragment extends Fragment {
             public void onActionDown(int currentPos) {
                 //handle scroll for viewpager
                 isPause = true;
-                swipeRefreshLayout.setEnabled(false);
+                fragmentHomeBinding.swipeRefreshLayout.setEnabled(false);
             }
         });
 
-        slider.setAdapter(sliderAdapter);
-        slider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        fragmentHomeBinding.pagerSlider.setAdapter(sliderAdapter);
+        fragmentHomeBinding.pagerSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -189,12 +179,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        dotsIndicator.setViewPager(slider);
+        fragmentHomeBinding.dotIndicator.setViewPager(fragmentHomeBinding.pagerSlider);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     public void addListener() {
-        slider.setOnTouchListener(new View.OnTouchListener() {
+        fragmentHomeBinding.pagerSlider.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -204,14 +194,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        fragmentHomeBinding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //fake fetch data
                 new Timer().schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        fragmentHomeBinding.swipeRefreshLayout.setRefreshing(false);
                     }
                 }, 200);
             }

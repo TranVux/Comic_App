@@ -1,4 +1,4 @@
-package com.example.assignment.adapters;
+package com.example.assignment.utils;
 
 import android.graphics.Rect;
 import android.view.View;

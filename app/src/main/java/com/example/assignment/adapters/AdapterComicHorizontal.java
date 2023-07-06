@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.assignment.R;
+import com.example.assignment.databinding.ComicLayoutHorizontalBinding;
 import com.example.assignment.models.Comic;
 
 import java.util.ArrayList;
 
 public class AdapterComicHorizontal extends RecyclerView.Adapter<AdapterComicHorizontal.ComicHorizontalViewHolder> {
-
 
     private ArrayList<Comic> listComic;
     private Context context;
@@ -42,8 +42,8 @@ public class AdapterComicHorizontal extends RecyclerView.Adapter<AdapterComicHor
     @NonNull
     @Override
     public ComicHorizontalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_layout_horizontal, parent, false);
-        return new ComicHorizontalViewHolder(view);
+        ComicLayoutHorizontalBinding comicLayoutHorizontalBinding =ComicLayoutHorizontalBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ComicHorizontalViewHolder(comicLayoutHorizontalBinding);
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -52,30 +52,20 @@ public class AdapterComicHorizontal extends RecyclerView.Adapter<AdapterComicHor
         if (listComic.get(position) == null) return;
 
         Glide.with(context).load(listComic.get(position).getThumbnail())
-                .override(170, 120).placeholder(R.drawable.placeholder_image)
+                .override(230, 210).placeholder(R.drawable.placeholder_image)
                 .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.thumbnail);
+                .into(holder.comicLayoutHorizontalBinding.imageThumbnail);
 
-        holder.comicTitle.setText(listComic.get(position).getTitle());
-        holder.categories.setText(listComic.get(position).getCategories());
+        holder.comicLayoutHorizontalBinding.comicTitle.setText(listComic.get(position).getTitle());
+        holder.comicLayoutHorizontalBinding.comicCategory.setText(listComic.get(position).getCategories());
 
-        holder.comicLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                comicListenerHandler.onItemClick(listComic.get(position));
+        holder.comicLayoutHorizontalBinding.comicLayout.setOnClickListener(view -> comicListenerHandler.onItemClick(listComic.get(position)));
+
+        holder.comicLayoutHorizontalBinding.comicLayout.setOnTouchListener((view, motionEvent) -> {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                comicListenerHandler.onTouchStart();
             }
-        });
-
-        holder.comicLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    comicListenerHandler.onTouchStart();
-                }
-
-                return false;
-            }
+            return false;
         });
     }
 
@@ -85,18 +75,11 @@ public class AdapterComicHorizontal extends RecyclerView.Adapter<AdapterComicHor
         return listComic.size();
     }
 
-    public class ComicHorizontalViewHolder extends RecyclerView.ViewHolder {
-        ImageView thumbnail;
-        TextView comicTitle, categories;
-        LinearLayout comicLayout;
-
-        public ComicHorizontalViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            comicLayout = itemView.findViewById(R.id.comic_layout);
-            thumbnail = itemView.findViewById(R.id.image);
-            comicTitle = itemView.findViewById(R.id.comic_title);
-            categories = itemView.findViewById(R.id.comic_category);
+    public static class ComicHorizontalViewHolder extends RecyclerView.ViewHolder {
+        private final ComicLayoutHorizontalBinding comicLayoutHorizontalBinding;
+        public ComicHorizontalViewHolder(ComicLayoutHorizontalBinding comicLayoutHorizontalBinding) {
+            super(comicLayoutHorizontalBinding.getRoot());
+            this.comicLayoutHorizontalBinding = comicLayoutHorizontalBinding;
         }
     }
 

@@ -6,31 +6,25 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.assignment.R;
 import com.example.assignment.adapters.AdapterItemOption;
-import com.example.assignment.adapters.GridSpacingItemDecoration;
+import com.example.assignment.utils.GridSpacingItemDecoration;
+import com.example.assignment.databinding.OptionBottomSheetLayoutBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class OptionBottomSheetDialog extends BottomSheetDialogFragment {
     private static final String TAG = OptionBottomSheetDialog.class.getSimpleName();
-
+    private OptionBottomSheetLayoutBinding optionBottomSheetLayoutBinding;
     private String titleText;
     private int selectedItem;
-    private TextView title;
-    private MaterialButton buttonConfirm;
-    private RecyclerView listViewOption;
     private ArrayList dataList;
     private OptionBottomSheetType optionBottomSheetType;
     private AdapterItemOption adapterItemOption;
@@ -70,19 +64,20 @@ public class OptionBottomSheetDialog extends BottomSheetDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
-        View view = LayoutInflater.from(requireContext()).inflate(R.layout.option_bottom_sheet_layout, null);
-        bottomSheetDialog.setContentView(view);
+        optionBottomSheetLayoutBinding = OptionBottomSheetLayoutBinding.inflate(LayoutInflater.from(requireContext()));
 
-        handleBottomSheet(view);
+        bottomSheetDialog.setContentView(optionBottomSheetLayoutBinding.getRoot());
+
+        handleBottomSheet();
         return bottomSheetDialog;
     }
 
-    public void handleBottomSheet(View view) {
-        buttonConfirm = view.findViewById(R.id.button_confirm);
-        title = view.findViewById(R.id.title);
-        listViewOption = view.findViewById(R.id.list_item);
+    public void handleBottomSheet() {
+//        buttonConfirm = view.findViewById(R.id.button_confirm);
+//        title = view.findViewById(R.id.title);
+//        listViewOption = view.findViewById(R.id.list_item);
 
-        title.setText(this.titleText);
+        optionBottomSheetLayoutBinding.title.setText(this.titleText);
 
         addEventListener();
         handleListOption();
@@ -99,13 +94,13 @@ public class OptionBottomSheetDialog extends BottomSheetDialogFragment {
             }
         }, this.optionBottomSheetType, this.selectedItem);
 
-        listViewOption.setLayoutManager(gridLayoutManager);
-        listViewOption.addItemDecoration(new GridSpacingItemDecoration(3, 30, false));
-        listViewOption.setAdapter(adapterItemOption);
+        optionBottomSheetLayoutBinding.listItem.setLayoutManager(gridLayoutManager);
+        optionBottomSheetLayoutBinding.listItem.addItemDecoration(new GridSpacingItemDecoration(3, 30, false));
+        optionBottomSheetLayoutBinding.listItem.setAdapter(adapterItemOption);
     }
 
     public void addEventListener() {
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+        optionBottomSheetLayoutBinding.buttonConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Confirm button");
