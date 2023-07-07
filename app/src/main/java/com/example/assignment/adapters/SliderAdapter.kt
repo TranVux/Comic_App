@@ -31,32 +31,35 @@ class SliderAdapter(
         )
         setUpBlurView(itemSliderLayoutBinding.blurView)
 
-        itemSliderLayoutBinding.title.text = listComic[position].title
-        itemSliderLayoutBinding.category.text = listComic[position].categories
-        itemSliderLayoutBinding.synopsis.text = listComic[position].synopsis
+        itemSliderLayoutBinding.apply {
+            title.text = listComic[position].title
+            category.text = listComic[position].categories
+            synopsis.text = listComic[position].synopsis
 
-        Glide.with(context).load(listComic[position].thumbnail)
-            .override(330, 185).placeholder(R.drawable.placeholder_image)
-            .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(itemSliderLayoutBinding.backgroundImage)
+            Glide.with(context).load(listComic[position].thumbnail)
+                .override(330, 185).placeholder(R.drawable.placeholder_image)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(backgroundImage)
 
-        Glide.with(context).load(listComic[position].thumbnail)
-            .placeholder(R.drawable.placeholder_image)
-            .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(itemSliderLayoutBinding.thumbnailImage)
+            Glide.with(context).load(listComic[position].thumbnail)
+                .placeholder(R.drawable.placeholder_image)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(thumbnailImage)
 
-        itemSliderLayoutBinding.blurView.setOnClickListener {
-            handleItemClick.onItemClick(
-                listComic[position]
-            )
-        }
-
-        itemSliderLayoutBinding.blurView.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                handleItemClick.onActionDown(position)
+            blurView.setOnClickListener {
+                handleItemClick.onItemClick(
+                    listComic[position]
+                )
             }
-            false
+
+            blurView.setOnTouchListener { _, motionEvent ->
+                if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                    handleItemClick.onActionDown(position)
+                }
+                false
+            }
         }
+
         container.addView(itemSliderLayoutBinding.root)
         return itemSliderLayoutBinding.root
     }

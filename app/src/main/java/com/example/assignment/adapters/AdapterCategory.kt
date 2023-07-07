@@ -35,22 +35,24 @@ class AdapterCategory(
         holder: CategoryViewHolder,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        holder.categoryLayoutItemBinding.categoryText.text = listCategory[position].title
-        holder.categoryLayoutItemBinding.bgCategory.setCardBackgroundColor(
-            Color.parseColor(
-                listCategory[position].displayColor
+        holder.categoryLayoutItemBinding.apply {
+            categoryText.text = listCategory[position].title
+            bgCategory.setCardBackgroundColor(
+                Color.parseColor(
+                    listCategory[position].displayColor
+                )
             )
-        )
-        Glide.with(context).load(listCategory!![position]!!.thumbnail)
-            .placeholder(R.drawable.placeholder_image).override(100, 100)
-            .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
-            .into(holder.categoryLayoutItemBinding.imageCategory)
+            Glide.with(context).load(listCategory[position].thumbnail)
+                .placeholder(R.drawable.placeholder_image).override(100, 100)
+                .diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(true)
+                .into(imageCategory)
 
-        holder.categoryLayoutItemBinding.itemCategory.setOnClickListener(View.OnClickListener {
-            listCategory[position].let { item ->
-                categoryHandlerListener.onItemClick(item)
-            }
-        })
+            itemCategory.setOnClickListener(View.OnClickListener {
+                listCategory[position].let { item ->
+                    categoryHandlerListener.onItemClick(item)
+                }
+            })
+        }
     }
 
     override fun getItemCount(): Int {

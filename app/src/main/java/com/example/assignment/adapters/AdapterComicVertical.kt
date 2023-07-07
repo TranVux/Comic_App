@@ -28,16 +28,18 @@ class AdapterComicVertical(
         holder: ComicVerticalViewHolder,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        Glide.with(context).load(listComic[position].thumbnail)
-            .override(200, 230).placeholder(R.drawable.placeholder_image)
-            .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(holder.comicLayoutVerticalBinding.imageThumbnail)
+        holder.comicLayoutVerticalBinding.apply {
+            Glide.with(context).load(listComic[position].thumbnail)
+                .override(200, 230).placeholder(R.drawable.placeholder_image)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageThumbnail)
 
-        holder.comicLayoutVerticalBinding.comicTitle.text = listComic[position].title
+            comicTitle.text = listComic[position].title
 
-        holder.comicLayoutVerticalBinding.comicLayout.setOnClickListener(View.OnClickListener {
-            comicListenerHandler.onItemClick(listComic[position])
-        })
+            comicLayout.setOnClickListener(View.OnClickListener {
+                comicListenerHandler.onItemClick(listComic[position])
+            })
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

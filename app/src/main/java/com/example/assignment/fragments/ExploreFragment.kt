@@ -79,13 +79,14 @@ class ExploreFragment : Fragment() {
                     )
                 }
             })
-        fragmentExploreBinding!!.categoryList.adapter = adapterCategory
+        fragmentExploreBinding?.categoryList?.adapter = adapterCategory
         val gridLayoutManager: StaggeredGridLayoutManager =
             object : StaggeredGridLayoutManager(5, VERTICAL) {
                 override fun canScrollVertically(): Boolean {
                     return false
                 }
             }
+
         fragmentExploreBinding!!.categoryList.layoutManager = gridLayoutManager
         fragmentExploreBinding!!.categoryList.addItemDecoration(
             GridSpacingItemDecoration(
@@ -172,7 +173,7 @@ class ExploreFragment : Fragment() {
 
     @SuppressLint("ClickableViewAccessibility")
     fun addListener() {
-        fragmentExploreBinding!!.pagerSlider.setOnTouchListener { view, motionEvent ->
+        fragmentExploreBinding!!.pagerSlider.setOnTouchListener { _, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_UP) {
                 isPause = false
             }

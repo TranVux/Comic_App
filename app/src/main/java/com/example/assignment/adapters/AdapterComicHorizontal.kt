@@ -36,22 +36,27 @@ class AdapterComicHorizontal(
         holder: ComicHorizontalViewHolder,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        Glide.with(context).load(listComic[position].thumbnail)
-            .override(230, 210).placeholder(R.drawable.placeholder_image)
-            .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(holder.comicLayoutHorizontalBinding.imageThumbnail)
-        holder.comicLayoutHorizontalBinding.comicTitle.text = listComic[position].title
-        holder.comicLayoutHorizontalBinding.comicCategory.text = listComic[position].categories
-        holder.comicLayoutHorizontalBinding.comicLayout.setOnClickListener { view: View? ->
-            comicListenerHandler.onItemClick(
-                listComic!![position]
-            )
-        }
-        holder.comicLayoutHorizontalBinding.comicLayout.setOnTouchListener { view: View?, motionEvent: MotionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-                comicListenerHandler.onTouchStart()
+        holder.comicLayoutHorizontalBinding.apply {
+            Glide.with(context).load(listComic[position].thumbnail)
+                .override(230, 210).placeholder(R.drawable.placeholder_image)
+                .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imageThumbnail)
+
+            comicTitle.text = listComic[position].title
+            comicCategory.text = listComic[position].categories
+
+            comicLayout.setOnClickListener {
+                comicListenerHandler.onItemClick(
+                    listComic[position]
+                )
             }
-            false
+
+            comicLayout.setOnTouchListener { _: View?, motionEvent: MotionEvent ->
+                if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+                    comicListenerHandler.onTouchStart()
+                }
+                false
+            }
         }
     }
 

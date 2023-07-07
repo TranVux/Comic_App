@@ -54,19 +54,23 @@ class AdapterItemOption(
         } else if (type === OptionBottomSheetType.COUNTRY) {
             valueString = listData[position] as String
         }
-        holder.itemOptionLayoutBinding.textOption.text = valueString
-        holder.itemOptionLayoutBinding.itemOption.setCardBackgroundColor(
-            if (position == itemSelected) Color.parseColor("#00AAD3") else Color.parseColor("#1E2027")
-        )
+
+        holder.itemOptionLayoutBinding.apply {
+            textOption.text = valueString
+            itemOption.setCardBackgroundColor(
+                if (position == itemSelected) Color.parseColor("#00AAD3") else Color.parseColor("#1E2027")
+            )
 //        val finalValueString = valueString
-        holder.itemOptionLayoutBinding.itemOption.setOnClickListener {
-            valueString?.let { string ->
-                itemOptionHandler.onItemClick(
-                    string,
-                    position
-                )
+            itemOption.setOnClickListener {
+                valueString?.let { string ->
+                    itemOptionHandler.onItemClick(
+                        string,
+                        position
+                    )
+                }
             }
         }
+
     }
 
     class ItemOptionViewHolder(val itemOptionLayoutBinding: ItemOptionLayoutBinding) :
