@@ -7,7 +7,7 @@
     android:background="@color/bg_app"
     android:orientation="vertical"
     android:padding="@dimen/padding_default"
-    tools:context=".views.LoginActivity">
+    tools:context=".uis.activities.LoginActivity">
 
     <ImageView
         android:id="@+id/buttonGoHome"

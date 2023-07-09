@@ -1,4 +1,4 @@
-package com.example.assignment.views
+package com.example.assignment.uis.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,14 +7,15 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assignment.R
 import com.example.assignment.databinding.ActivityDetailBinding
-import com.example.assignment.fragments.OptionBottomSheetDialog
-import com.example.assignment.fragments.OptionBottomSheetDialog.OptionBottomSheetType
-import com.example.assignment.models.Author
+import com.example.assignment.uis.fragments.OptionBottomSheetDialog
+import com.example.assignment.uis.fragments.OptionBottomSheetDialog.OptionBottomSheetType
 import com.example.assignment.models.Category
 
 class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var activityDetailBinding: ActivityDetailBinding? = null
+    private val activityDetailBinding: ActivityDetailBinding by lazy {
+        ActivityDetailBinding.inflate(layoutInflater)
+    }
     private var defaultSelectedItemCategoryIndex = 0
     private var defaultSelectedItemCountryIndex = 0
     private var textCategorySelected = ""
@@ -23,16 +24,15 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityDetailBinding = ActivityDetailBinding.inflate(layoutInflater)
-        setContentView(activityDetailBinding!!.root)
+        setContentView(activityDetailBinding.root)
         init()
         addEventListener()
     }
 
     fun init() {}
     private fun addEventListener() {
-        activityDetailBinding!!.buttonCountry.setOnClickListener(this@DetailActivity)
-        activityDetailBinding!!.buttonCategory.setOnClickListener(this@DetailActivity)
+        activityDetailBinding.buttonCountry.setOnClickListener(this@DetailActivity)
+        activityDetailBinding.buttonCategory.setOnClickListener(this@DetailActivity)
     }
 
     private fun handleBottomSheetOption(type: OptionBottomSheetType) {
@@ -82,16 +82,16 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
 
         if (textCountrySelected == "" && textCategorySelected == "") {
             textDecoration = ""
-            activityDetailBinding!!.choice.visibility = View.GONE
+            activityDetailBinding.choice.visibility = View.GONE
         } else {
-            activityDetailBinding!!.choice.visibility = View.VISIBLE
+            activityDetailBinding.choice.visibility = View.VISIBLE
             if (textCountrySelected == "" || textCategorySelected == "") {
                 textDecoration = ""
-                activityDetailBinding!!.choice.text =
+                activityDetailBinding.choice.text =
                     "Đã chọn: $textCategorySelected$textDecoration$textCountrySelected"
             } else {
                 textDecoration = " • "
-                activityDetailBinding!!.choice.text =
+                activityDetailBinding.choice.text =
                     "Đã chọn: $textCategorySelected$textDecoration$textCountrySelected"
             }
         }

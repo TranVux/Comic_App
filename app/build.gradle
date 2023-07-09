@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 
 android {
     namespace 'com.example.assignment'
@@ -30,8 +30,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-
-    def enableProguardInReleaseBuilds = false
 }
 
 dependencies {
@@ -45,16 +43,34 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Java language implementation
-    implementation "androidx.navigation:navigation-fragment:2.6.0"
-    implementation "androidx.navigation:navigation-ui:2.6.0"
-
+    implementation "androidx.navigation:navigation-fragment-ktx:2.6.0"
+    implementation "androidx.navigation:navigation-ui-ktx:2.6.0"
 
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     //noinspection GradleDependency
     implementation 'com.tbuonomo:dotsindicator:4.2'
     implementation 'com.github.Dimezis:BlurView:version-2.0.3'
-
     implementation 'com.ramotion.fluidslider:fluid-slider:0.3.1'
+
+    //room database
+    implementation "androidx.room:room-runtime:2.5.2"
+    kapt "androidx.room:room-compiler:2.5.2"
+    implementation "androidx.room:room-ktx:2.5.2"
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
+
+    // Retrofit + GSON
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
+    // Annotation processor
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    kapt("androidx.lifecycle:lifecycle-compiler:2.6.1")
 }

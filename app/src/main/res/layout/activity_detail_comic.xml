@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/padding_default"
     android:paddingBottom="@dimen/padding_default"
-    tools:context=".views.DetailComicActivity">
+    tools:context=".uis.activities.DetailComicActivity">
 
     <com.example.assignment.components.HeaderApp
         android:id="@+id/header_app"

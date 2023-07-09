@@ -1,7 +1,7 @@
 package com.example.assignment.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.assignment.fragments.OptionBottomSheetDialog.OptionBottomSheetType
+import com.example.assignment.uis.fragments.OptionBottomSheetDialog.OptionBottomSheetType
 import com.example.assignment.models.Category
 
 class DiffUtilOptionAdapter(

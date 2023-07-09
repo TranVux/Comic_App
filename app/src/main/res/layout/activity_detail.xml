@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_app"
     android:orientation="vertical"
-    tools:context=".views.DetailActivity">
+    tools:context=".uis.activities.DetailActivity">
 
     <com.example.assignment.components.HeaderApp
         android:id="@+id/header_app"

@@ -15,22 +15,22 @@
         android:theme="@style/Theme.Assignment"
         tools:targetApi="31">
         <activity
-            android:name=".views.ReadingActivity"
+            android:name=".uis.activities.ReadingActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".views.DetailComicActivity"
+            android:name=".uis.activities.DetailComicActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".views.DetailActivity"
+            android:name=".uis.activities.DetailActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".views.NavigationActivity"
+            android:name=".uis.activities.NavigationActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,13 +39,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.RegisterActivity"
+            android:name=".uis.activities.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" >
 
         </activity>
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".uis.activities.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" >
 

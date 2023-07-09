@@ -1,4 +1,4 @@
-package com.example.assignment.views
+package com.example.assignment.uis.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -9,39 +9,38 @@ import com.example.assignment.databinding.ActivityDetailComicBinding
 import com.example.assignment.utils.AppAnimation
 
 class DetailComicActivity : AppCompatActivity(), View.OnClickListener {
-    private var activityDetailComicBinding: ActivityDetailComicBinding? = null
+    private val activityDetailComicBinding: ActivityDetailComicBinding by lazy {
+        ActivityDetailComicBinding.inflate(layoutInflater)
+    }
     private var isExpandedSynopsisLayout = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityDetailComicBinding = ActivityDetailComicBinding.inflate(
-            layoutInflater
-        )
-        setContentView(activityDetailComicBinding!!.root)
+        setContentView(activityDetailComicBinding.root)
         init()
         addListenerEvent()
     }
 
     fun init() {}
     private fun addListenerEvent() {
-        activityDetailComicBinding!!.expandSynopsisButton.setOnClickListener(this@DetailComicActivity)
-        activityDetailComicBinding!!.readButton.setOnClickListener(this@DetailComicActivity)
-        activityDetailComicBinding!!.favoriteButton.setOnClickListener(this@DetailComicActivity)
+        activityDetailComicBinding.expandSynopsisButton.setOnClickListener(this@DetailComicActivity)
+        activityDetailComicBinding.readButton.setOnClickListener(this@DetailComicActivity)
+        activityDetailComicBinding.favoriteButton.setOnClickListener(this@DetailComicActivity)
     }
 
     private fun handleExpandSynopsis() {
         if (isExpandedSynopsisLayout) {
             AppAnimation.collapse(
-                activityDetailComicBinding!!.expandSynopsisLayout,
+                activityDetailComicBinding.expandSynopsisLayout,
                 150,
-                activityDetailComicBinding!!.maskSynopsis
+                activityDetailComicBinding.maskSynopsis
             )
-            AppAnimation.rotate(activityDetailComicBinding!!.expandSynopsisButton, 0f, 500)
+            AppAnimation.rotate(activityDetailComicBinding.expandSynopsisButton, 0f, 500)
         } else {
             AppAnimation.expand(
-                activityDetailComicBinding!!.expandSynopsisLayout,
-                activityDetailComicBinding!!.maskSynopsis
+                activityDetailComicBinding.expandSynopsisLayout,
+                activityDetailComicBinding.maskSynopsis
             )
-            AppAnimation.rotate(activityDetailComicBinding!!.expandSynopsisButton, 180f, 500)
+            AppAnimation.rotate(activityDetailComicBinding.expandSynopsisButton, 180f, 500)
         }
         isExpandedSynopsisLayout = !isExpandedSynopsisLayout
     }

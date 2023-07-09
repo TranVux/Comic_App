@@ -8,5 +8,7 @@ class Category(
     var thumbnail: String?,
     var displayColor: String?
 ) : Serializable {
-
+    override fun toString(): String {
+        return "$title "
+    }
 }

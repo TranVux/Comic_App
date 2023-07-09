@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/bg_app"
-    tools:context=".views.NavigationActivity">
+    tools:context=".uis.activities.NavigationActivity">
 
     <com.example.assignment.components.HeaderApp
         android:id="@+id/header_app"

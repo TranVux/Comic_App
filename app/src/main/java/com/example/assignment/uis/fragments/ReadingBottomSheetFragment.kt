@@ -1,4 +1,4 @@
-package com.example.assignment.fragments
+package com.example.assignment.uis.fragments
 
 import android.app.Dialog
 import android.os.Bundle

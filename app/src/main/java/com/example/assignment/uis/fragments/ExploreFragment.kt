@@ -1,4 +1,4 @@
-package com.example.assignment.fragments
+package com.example.assignment.uis.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -219,7 +219,7 @@ class ExploreFragment : Fragment() {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://hhhkungfu.tv/wp-content/uploads/Dau-La-Dai-Luc-2.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -232,7 +232,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://channel.mediacdn.vn/428462621602512896/2023/2/6/photo-1-16756724304802069391968.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -245,7 +245,7 @@ class ExploreFragment : Fragment() {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://hhhkungfu.tv/wp-content/uploads/Dau-Pha-Thuong-Khung-5-320x449.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -258,7 +258,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -271,7 +271,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://m.media-amazon.com/images/M/MV5BMTYzOGU4OTItNmU4NC00MmViLWEyNzctMmZkMzgxZjM5MjExXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg",
-                    "Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -284,7 +284,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://upload.wikimedia.org/wikipedia/vi/e/ec/%C3%81p_ph%C3%ADch_phim_Kuruki_Yuuyami_no_Scherzo.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -297,7 +297,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://cdn.galaxycine.vn/media/2022/2/18/img-6357_1645152824607.JPG",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -310,7 +310,7 @@ class ExploreFragment : Fragment() {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://upload.wikimedia.org/wikipedia/vi/c/cd/MagiCover01.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )
@@ -323,7 +323,7 @@ class ExploreFragment : Fragment() {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://photo2.tinhte.vn/data/attachment-files/2022/08/6098799_dau-pha-thuong-khung-phan-5-300x450_2.jpg",
-                    "Action, Romance",
+                    dataCategory,
                     Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
                     User()
                 )

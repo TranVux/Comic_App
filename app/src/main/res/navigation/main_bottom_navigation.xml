@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.assignment.fragments.ExploreFragment"
+        android:name="com.example.assignment.uis.fragments.ExploreFragment"
         android:label="ExploreFragment" >
         <action
             android:id="@+id/action_exploreFragment_to_favoriteFragment"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.assignment.fragments.HomeFragment"
+        android:name="com.example.assignment.uis.fragments.HomeFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_exploreFragment"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.assignment.fragments.UserFragment"
+        android:name="com.example.assignment.uis.fragments.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.assignment.fragments.FavoriteFragment"
+        android:name="com.example.assignment.uis.fragments.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action

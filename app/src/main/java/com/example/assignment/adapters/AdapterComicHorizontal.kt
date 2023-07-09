@@ -43,7 +43,7 @@ class AdapterComicHorizontal(
                 .into(imageThumbnail)
 
             comicTitle.text = listComic[position].title
-            comicCategory.text = listComic[position].categories
+            comicCategory.text = listComic[position].categories.toString()
 
             comicLayout.setOnClickListener {
                 comicListenerHandler.onItemClick(

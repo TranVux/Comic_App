@@ -3,10 +3,10 @@ package com.example.assignment.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.assignment.fragments.ExploreFragment
-import com.example.assignment.fragments.FavoriteFragment
-import com.example.assignment.fragments.HomeFragment
-import com.example.assignment.fragments.UserFragment
+import com.example.assignment.uis.fragments.ExploreFragment
+import com.example.assignment.uis.fragments.FavoriteFragment
+import com.example.assignment.uis.fragments.HomeFragment
+import com.example.assignment.uis.fragments.UserFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {

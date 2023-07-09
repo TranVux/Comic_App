@@ -33,7 +33,7 @@ class SliderAdapter(
 
         itemSliderLayoutBinding.apply {
             title.text = listComic[position].title
-            category.text = listComic[position].categories
+            category.text = listComic[position].categories.toString()
             synopsis.text = listComic[position].synopsis
 
             Glide.with(context).load(listComic[position].thumbnail)

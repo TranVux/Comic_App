@@ -52,6 +52,8 @@
                     style="@style/SubTitle11_Semi_Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
                     android:text="Action, Romantic" />
 
                 <TextView

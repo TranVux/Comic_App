@@ -1,16 +1,16 @@
-package com.example.assignment.views
+package com.example.assignment.uis.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.assignment.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
-    private var activityRegisterBinding: ActivityRegisterBinding? = null
+    private val activityRegisterBinding: ActivityRegisterBinding by lazy {
+        ActivityRegisterBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityRegisterBinding = ActivityRegisterBinding.inflate(
-            layoutInflater
-        )
-        setContentView(activityRegisterBinding!!.root)
+        setContentView(activityRegisterBinding.root)
     }
 }

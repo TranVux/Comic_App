@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/padding_default"
     android:paddingTop="@dimen/button_radius"
-    tools:context=".views.ReadingActivity">
+    tools:context=".uis.activities.ReadingActivity">
 
     <com.example.assignment.components.HeaderApp
         android:id="@+id/header_app"

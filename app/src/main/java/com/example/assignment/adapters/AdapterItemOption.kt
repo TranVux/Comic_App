@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment.adapters.AdapterItemOption.ItemOptionViewHolder
 import com.example.assignment.databinding.ItemOptionLayoutBinding
-import com.example.assignment.fragments.OptionBottomSheetDialog.OptionBottomSheetType
+import com.example.assignment.uis.fragments.OptionBottomSheetDialog.OptionBottomSheetType
 import com.example.assignment.models.Category
 import com.example.assignment.utils.DiffUtilOptionAdapter
 
