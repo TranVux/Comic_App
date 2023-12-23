@@ -13,25 +13,31 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Assignment"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".uis.activities.SendMail"
+            android:exported="true" />
+        <activity
+            android:name=".uis.activities.TestTextViewHtml"
+            android:exported="true"></activity>
+        <activity
             android:name=".uis.activities.ReadingActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".uis.activities.DetailComicActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".uis.activities.DetailActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".uis.activities.NavigationActivity"
-            android:exported="true" >
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".uis.activities.RegisterActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,15 +45,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".uis.activities.RegisterActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
-
-        </activity>
-        <activity
             android:name=".uis.activities.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustResize">
 
         </activity>
     </application>

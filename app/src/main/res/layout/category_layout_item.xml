@@ -19,9 +19,11 @@
             android:id="@+id/image_category"
             android:layout_width="@dimen/icon_size"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
             android:layout_height="@dimen/icon_size"
-            android:scaleType="centerCrop" />
+            android:src="@drawable/thamhiem"
+            android:scaleType="centerCrop"
+            android:tintMode="src_atop"
+            app:tint="@color/white" />
 
     </androidx.cardview.widget.CardView>
 

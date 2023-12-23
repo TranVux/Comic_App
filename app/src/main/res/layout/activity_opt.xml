@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_app"
+    android:padding="@dimen/padding_default"
+    android:orientation="vertical"
+    tools:context=".uis.activities.SendMail">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/input_height"
+        android:text="Nhập email tài khoản của bạn"
+        android:theme="@style/Heading25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Chúng tôi sẽ gửi liên kết để thay đổi mật khẩu"
+        android:theme="@style/SubHeading11" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_edit_text"
+        style="@style/OutlineEditTextLayoutStyle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/input_height"
+        android:layout_marginTop="50dp"
+        app:placeholderText="@string/email_placeholder"
+        android:hint="@string/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusForward="@id/password_edit_text"
+            android:imeOptions="actionNext"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/ButtonAppStyle"
+        android:id="@+id/button_confirm"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        android:layout_height="@dimen/button_height"
+        android:text="Xác Nhận"
+        android:layout_marginTop="@dimen/input_height"
+        />
+
+</LinearLayout>

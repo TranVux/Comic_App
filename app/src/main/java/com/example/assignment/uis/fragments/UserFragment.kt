@@ -1,6 +1,7 @@
 package com.example.assignment.uis.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.assignment.models.Author
 import com.example.assignment.models.Category
 import com.example.assignment.models.Comic
 import com.example.assignment.models.User
+import com.example.assignment.uis.activities.LoginActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -107,9 +109,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://hhhkungfu.tv/wp-content/uploads/Dau-La-Dai-Luc-2.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -120,9 +122,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://channel.mediacdn.vn/428462621602512896/2023/2/6/photo-1-16756724304802069391968.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -133,9 +135,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://hhhkungfu.tv/wp-content/uploads/Dau-Pha-Thuong-Khung-5-320x449.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -146,9 +148,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -159,9 +161,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://m.media-amazon.com/images/M/MV5BMTYzOGU4OTItNmU4NC00MmViLWEyNzctMmZkMzgxZjM5MjExXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_FMjpg_UX1000_.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -172,9 +174,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://upload.wikimedia.org/wikipedia/vi/e/ec/%C3%81p_ph%C3%ADch_phim_Kuruki_Yuuyami_no_Scherzo.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -185,9 +187,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://cdn.galaxycine.vn/media/2022/2/18/img-6357_1645152824607.JPG",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -198,9 +200,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "Japan",
                     requireContext().resources.getString(R.string.lorem),
                     "https://upload.wikimedia.org/wikipedia/vi/c/cd/MagiCover01.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             listData.add(
@@ -211,97 +213,9 @@ class UserFragment : Fragment(), View.OnClickListener {
                     "China",
                     requireContext().resources.getString(R.string.lorem),
                     "https://photo2.tinhte.vn/data/attachment-files/2022/08/6098799_dau-pha-thuong-khung-phan-5-300x450_2.jpg",
-                    dataCategory,
-                    Author("112", "Tran Anh Vu", "Xinc aho cá ạn"),
-                    User()
-                )
-            )
-            return listData
-        }
-
-
-    @get:SuppressLint("ResourceType")
-    val dataCategory: ArrayList<Category>
-        get() {
-            val listData = ArrayList<Category>()
-            listData.add(
-                Category(
-                    "55444546",
-                    "Hành động",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_blue_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trinh thám",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Lạng mãn",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Học tập",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green_light)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Thể thao",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_yellow)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trường học",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_yellow_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trẻ em",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_blue_sky)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Tưởng tượng",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_pink_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Kinh dị",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_pink_light)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Phép thuật",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_red_light)
+                    "kjsdhfkhsdkf",
+                    "Trần Anh Vũ",
+                    "Trần Anh Vũ"
                 )
             )
             return listData
@@ -311,7 +225,10 @@ class UserFragment : Fragment(), View.OnClickListener {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.option_change_pass -> Log.d(TAG, "onClick: changepass")
-            R.id.option_log_in_out -> Log.d(TAG, "onClick: log inout")
+            R.id.option_log_in_out -> {
+                requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java));
+                requireActivity().finishAffinity()
+            }
         }
     }
 

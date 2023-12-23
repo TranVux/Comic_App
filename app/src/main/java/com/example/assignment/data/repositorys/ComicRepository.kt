@@ -8,23 +8,9 @@ import kotlinx.coroutines.delay
 
 class ComicRepository(
     private val api: ComicApi,
-    private val db: ComicAppDatabase
 ) {
-    private val comicDAO = db.comicDAO()
-
-    fun getComics() = networkBoundResource(
-        query = {
-            comicDAO.getAllComic()
-        },
-        fetch = {
-            delay(100)
-            api.getComics()
-        },
-        saveFetchResult = { comics ->
-            db.withTransaction {
-                comicDAO.deleteAllComic()
-                comicDAO.insertComics(comics)
-            }
-        }
-    )
+    suspend fun getComics(page: Int = 1, limit: Int = 8) = api.getComics(limit, page);
+    suspend fun getComicById(id:String) = api.getComicById(id)
+    suspend fun getDetailComic(id: String) = api.getDetailComic(id)
+    suspend fun getSliderComic() = api.getSlider();
 }

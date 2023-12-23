@@ -20,6 +20,7 @@
         app:app_sub_header_title="Chương 1" />
 
     <ScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -31,10 +32,8 @@
             android:letterSpacing="0.07"
             android:lineHeight="18dp"
             android:scrollbars="none"
-            android:text="@string/lorem_large"
             android:textSize="16sp"
             tools:targetApi="p" />
 
     </ScrollView>
-
 </LinearLayout>

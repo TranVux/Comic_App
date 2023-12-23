@@ -18,9 +18,18 @@ import eightbitlab.com.blurview.RenderScriptBlur
 
 class SliderAdapter(
     private val context: Context,
-    private val listComic: ArrayList<Comic>,
+    private var listComic: ArrayList<Comic>,
     private val handleItemClick: HandleItemClick
 ) : PagerAdapter() {
+
+    fun getList():ArrayList<Comic>{
+        return listComic;
+    }
+
+    fun setList(list: ArrayList<Comic>){
+        listComic = list;
+        notifyDataSetChanged()
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -33,7 +42,7 @@ class SliderAdapter(
 
         itemSliderLayoutBinding.apply {
             title.text = listComic[position].title
-            category.text = listComic[position].categories.toString()
+            category.text = listComic[position].categories
             synopsis.text = listComic[position].synopsis
 
             Glide.with(context).load(listComic[position].thumbnail)

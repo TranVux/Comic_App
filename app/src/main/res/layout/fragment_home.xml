@@ -19,23 +19,23 @@
                 android:layout_height="wrap_content"
                 app:flexDirection="column">
 
-                <com.example.assignment.components.TitleApp
-                    android:id="@+id/titleContinue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/card_radius"
-                    android:background="@color/bg_app"
-                    android:paddingHorizontal="15dp"
-                    app:app_isMore="false"
-                    app:app_title="Đọc tiếp" />
+<!--                <com.example.assignment.components.TitleApp-->
+<!--                    android:id="@+id/titleContinue"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="@dimen/card_radius"-->
+<!--                    android:background="@color/bg_app"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    app:app_isMore="false"-->
+<!--                    app:app_title="Đọc tiếp" />-->
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/continue_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:paddingHorizontal="@dimen/padding_default"
-                    android:scrollIndicators="none" />
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/continue_list"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:nestedScrollingEnabled="false"-->
+<!--                    android:paddingHorizontal="@dimen/padding_default"-->
+<!--                    android:scrollIndicators="none" />-->
 
                 <com.example.assignment.components.TitleApp
                     android:id="@+id/titleRelease"

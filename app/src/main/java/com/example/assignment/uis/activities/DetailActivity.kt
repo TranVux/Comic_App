@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         val optionBottomSheetDialog = OptionBottomSheetDialog
             .newInstance(
                 if (type == OptionBottomSheetType.COUNTRY) "Quốc gia" else "Thể loại",
-                if (type == OptionBottomSheetType.COUNTRY) countries else dataCategory,
+                if (type == OptionBottomSheetType.COUNTRY) countries else ArrayList(),
                 type,
                 if (type == OptionBottomSheetType.COUNTRY) defaultSelectedItemCountryIndex else defaultSelectedItemCategoryIndex
             ).setHandlerDismissListener(object :
@@ -105,101 +105,6 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
             list.add("China")
             list.add("Việt Nam")
             return list
-        }
-
-    @get:SuppressLint("ResourceType")
-    val dataCategory: ArrayList<Category>
-        get() {
-            val listData = ArrayList<Category>()
-            listData.add(
-                Category(
-                    "55444546",
-                    "Mặc định",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_blue_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Hành động",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_blue_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trinh thám",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Lạng mãn",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Học tập",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_green_light)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Thể thao",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_yellow)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trường học",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_yellow_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Trẻ em",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_blue_sky)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Tưởng tượng",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_pink_dark)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Kinh dị",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_pink_light)
-                )
-            )
-            listData.add(
-                Category(
-                    "55444546",
-                    "Phép thuật",
-                    "https://cdn-icons-png.flaticon.com/512/182/182085.png",
-                    resources.getString(R.color.category_red_light)
-                )
-            )
-            return listData
         }
 
     override fun onClick(view: View) {

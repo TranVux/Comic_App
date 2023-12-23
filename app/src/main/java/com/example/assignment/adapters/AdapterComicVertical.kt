@@ -58,6 +58,6 @@ class AdapterComicVertical(
         )
 
     interface ComicListenerHandler {
-        fun onItemClick(comic: Comic)
+        fun onItemClick(comic: Comic):Unit
     }
 }

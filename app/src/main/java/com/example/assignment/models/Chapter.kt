@@ -3,6 +3,7 @@ package com.example.assignment.models
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 @Entity(
@@ -14,12 +15,23 @@ import java.io.Serializable
         onDelete = ForeignKey.CASCADE
     )]
 )
-class Chapter(
+data class Chapter(
     @PrimaryKey var id: String,
+
+    @SerializedName("title")
     var title: String,
+
+    @SerializedName("content")
     var content: String,
+
+    @SerializedName("chapter_index")
     var index: Int,
-    var id_comic: String
+
+    @SerializedName("id_comic")
+    var id_comic: String,
+
+    @SerializedName("has_html")
+    val hasHtml: Int
 ) : Serializable {
 
 }

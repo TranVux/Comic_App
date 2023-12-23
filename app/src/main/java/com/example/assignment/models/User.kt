@@ -25,4 +25,8 @@ class User : Serializable {
     }
 
     constructor() {}
+
+    override fun toString(): String {
+        return "Email: $email, UserName: $user_name"
+    }
 }
